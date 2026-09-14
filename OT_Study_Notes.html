@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Old Testament Study Notes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,600&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=Caveat:wght@600;700&display=swap');
+
+:root{
+  --paper:#FAF5EA;
+  --paper-edge:#F0E8D6;
+  --ink:#1F2D4A;
+  --ink-soft:#3B4664;
+  --text:#2B2620;
+  --text-soft:#5B5347;
+  --rule:#D9CDB2;
+  --yellow-bg:#FBEEA6;
+  --yellow-edge:#D8B84A;
+  --orange-bg:#F6D9BC;
+  --orange-edge:#C1592B;
+  --orange-text:#8A3D18;
+  --blue-tab:#2B3A67;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--text);
+  font-family:'Source Serif 4', Georgia, serif;
+  line-height:1.65;
+}
+
+/* ---------- layout ---------- */
+.wrap{
+  display:grid;
+  grid-template-columns:250px minmax(0,720px);
+  gap:0 56px;
+  max-width:1080px;
+  margin:0 auto;
+  padding:0 24px;
+}
+nav.toc{
+  position:sticky;
+  top:0;
+  align-self:start;
+  padding:48px 0 40px;
+  max-height:100vh;
+  overflow-y:auto;
+}
+nav.toc h2{
+  font-family:'Fraunces', serif;
+  font-size:13px;
+  letter-spacing:.06em;
+  color:var(--text-soft);
+  margin:0 0 14px;
+  font-weight:600;
+}
+nav.toc .grp{margin-bottom:22px;}
+nav.toc .grp-label{
+  font-size:11px;
+  color:var(--orange-edge);
+  font-weight:600;
+  letter-spacing:.04em;
+  margin-bottom:6px;
+}
+nav.toc a{
+  display:block;
+  color:var(--ink-soft);
+  text-decoration:none;
+  font-size:15px;
+  padding:3px 0;
+  border-left:2px solid transparent;
+  padding-left:10px;
+  margin-left:-10px;
+  transition:border-color .15s;
+}
+nav.toc a:hover{border-left:2px solid var(--orange-edge); color:var(--ink);}
+
+main{padding:48px 0 120px; min-width:0;}
+
+/* ---------- cover ---------- */
+.cover{
+  padding:10px 0 50px;
+  border-bottom:2px solid var(--rule);
+  margin-bottom:50px;
+}
+.cover .eyebrow{
+  font-family:'Caveat', cursive;
+  font-size:22px;
+  color:var(--orange-edge);
+  transform:rotate(-1.5deg);
+  display:inline-block;
+}
+.cover h1{
+  font-family:'Fraunces', serif;
+  font-weight:900;
+  font-size:clamp(40px,6vw,64px);
+  line-height:1.02;
+  margin:6px 0 14px;
+  color:var(--ink);
+}
+.cover p.lede{
+  font-size:18px;
+  color:var(--text-soft);
+  max-width:56ch;
+  margin:0;
+}
+.cover .fivefold{
+  margin-top:28px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.cover .fivefold span{
+  font-size:12.5px;
+  border:1px solid var(--rule);
+  padding:5px 11px;
+  border-radius:20px;
+  color:var(--text-soft);
+  background:var(--paper-edge);
+}
+
+/* ---------- section groups ---------- */
+.section-group{margin-bottom:10px;}
+.section-group > .group-title{
+  font-family:'Fraunces', serif;
+  font-weight:700;
+  font-size:14px;
+  letter-spacing:.14em;
+  color:var(--blue-tab);
+  margin:70px 0 6px;
+  padding-bottom:8px;
+  border-bottom:1px solid var(--rule);
+}
+
+/* ---------- book blocks ---------- */
+.book{
+  margin:56px 0;
+  scroll-margin-top:20px;
+}
+.book h2.title{
+  font-family:'Fraunces', serif;
+  font-weight:900;
+  font-size:clamp(34px,5vw,52px);
+  color:var(--ink);
+  margin:0 0 4px;
+  letter-spacing:.01em;
+}
+.book .book-sub{
+  font-size:14px;
+  color:var(--text-soft);
+  margin-bottom:18px;
+  font-style:italic;
+}
+.book .bg{
+  font-size:16.5px;
+  color:var(--text);
+  margin-bottom:22px;
+}
+.book .bg p{margin:0 0 12px;}
+
+.passage{
+  margin:26px 0;
+  padding-left:18px;
+  border-left:3px solid var(--rule);
+}
+.passage h3{
+  font-family:'Fraunces', serif;
+  font-weight:700;
+  font-size:19px;
+  color:var(--ink-soft);
+  margin:0 0 10px;
+}
+.passage h3 .ref{
+  font-family:'Caveat', cursive;
+  font-size:22px;
+  color:var(--orange-edge);
+  margin-left:8px;
+}
+.passage ul{
+  margin:0;
+  padding-left:20px;
+}
+.passage li{margin-bottom:7px; font-size:16px;}
+.passage li::marker{color:var(--orange-edge);}
+
+/* ---------- callouts ---------- */
+.callout{
+  margin:16px 0;
+  padding:14px 18px;
+  border-radius:3px;
+  font-size:15.5px;
+  line-height:1.55;
+}
+.callout.quote{
+  background:var(--yellow-bg);
+  border-left:4px solid var(--yellow-edge);
+  font-style:italic;
+  color:#4a3d0a;
+}
+.callout.insight{
+  background:var(--orange-bg);
+  border-left:4px solid var(--orange-edge);
+  color:var(--orange-text);
+}
+.callout .tag{
+  display:block;
+  font-family:'Fraunces', serif;
+  font-weight:700;
+  font-style:normal;
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-bottom:5px;
+  opacity:.75;
+}
+
+.story{
+  margin:22px 0;
+  padding:20px 22px;
+  background:#fff;
+  border:1px solid var(--rule);
+  border-radius:4px;
+  box-shadow:0 1px 0 var(--rule);
+}
+.story .story-label{
+  font-family:'Caveat', cursive;
+  font-size:20px;
+  color:var(--blue-tab);
+  margin-bottom:8px;
+  display:block;
+}
+.story p{margin:0 0 10px; font-size:15.5px;}
+.story p:last-child{margin-bottom:0;}
+
+.diagram-note{
+  font-size:13.5px;
+  color:var(--text-soft);
+  background:var(--paper-edge);
+  padding:10px 14px;
+  border-radius:3px;
+  margin:14px 0;
+}
+
+hr.divider{
+  border:none;
+  border-top:1px dashed var(--rule);
+  margin:38px 0;
+}
+
+/* mobile */
+@media (max-width:860px){
+  .wrap{grid-template-columns:1fr;}
+  nav.toc{
+    position:relative;
+    max-height:none;
+    padding:20px 0;
+    border-bottom:2px solid var(--rule);
+    margin-bottom:10px;
+  }
+  nav.toc .grp{margin-bottom:14px;}
+  main{padding:24px 0 90px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="toc">
+  <h2>Contents</h2>
+  <div class="grp">
+    <div class="grp-label">Pentateuch</div>
+    <a href="#genesis">Genesis</a>
+    <a href="#exodus">Exodus</a>
+    <a href="#deuteronomy">Deuteronomy</a>
+  </div>
+  <div class="grp">
+    <div class="grp-label">Historical Books</div>
+    <a href="#joshua">Joshua</a>
+    <a href="#judges">Judges</a>
+    <a href="#ruth">Ruth</a>
+    <a href="#samuel">1 &amp; 2 Samuel</a>
+    <a href="#kings">1 &amp; 2 Kings</a>
+  </div>
+  <div class="grp">
+    <div class="grp-label">Poetical Books</div>
+    <a href="#job">Job</a>
+    <a href="#psalms">Psalms</a>
+    <a href="#proverbs">Proverbs</a>
+    <a href="#ecclesiastes">Ecclesiastes</a>
+    <a href="#song">Song of Solomon</a>
+  </div>
+  <div class="grp">
+    <div class="grp-label">Major Prophets</div>
+    <a href="#isaiah">Isaiah</a>
+    <a href="#jeremiah">Jeremiah</a>
+    <a href="#daniel">Daniel</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="cover">
+    <span class="eyebrow">cleaned up from a stack of handwritten notebooks</span>
+    <h1>Old Testament<br>Study Notes</h1>
+    <p class="lede">A book-by-book walk through the Pentateuch, the Historical Books, the Poetical Books, and the Major Prophets — background, key passages, and the details worth remembering.</p>
+    <div class="fivefold">
+      <span>Pentateuch</span>
+      <span>Historical Books</span>
+      <span>Poetical Books</span>
+      <span>Major Prophets</span>
+      <span>Minor Prophets</span>
+    </div>
+  </div>
+
+  <!-- ============ PENTATEUCH ============ -->
+  <div class="section-group"><div class="group-title">I &nbsp;·&nbsp; THE PENTATEUCH</div></div>
+
+  <section class="book" id="genesis">
+    <h2 class="title">Genesis</h2>
+    <div class="book-sub">Author: Moses, c. 1445–1405 B.C. &nbsp;·&nbsp; Hebrew title: <em>Bereshit</em></div>
+    <div class="bg">
+      <p>"Genesis" is the Greek word for <em>beginning</em>. It's the book of beginnings — the beginning of time, life, sin, salvation, and the Hebrew nation. It centers on four major events (Creation, the Fall, the Flood, the dispersion of the nations) and follows four patriarchs: Abraham, Isaac, Jacob, and Joseph.</p>
+      <p>Genesis isn't just the first book of the Bible — it's foundational for Christianity because it holds the first messianic prophecies (3:15 is the earliest; 12:3 and 49:10 follow). It also covers far more time than any other book: roughly 2,350 years, compared to about 1,650 for the rest of the Old Testament and about 100 for the entire New Testament.</p>
+    </div>
+
+    <div class="passage">
+      <h3>Creation <span class="ref">1:1–2:3</span></h3>
+      <ul>
+        <li><strong>Ex nihilo</strong> — "with nothing, nothing comes." Creation begins from literal nothing.</li>
+        <li>Each act of creation follows a pattern: (1) spoken into existence, (2) given a name, (3) evaluated by the Creator ("and God saw that it was good").</li>
+        <li>Day by day: v.3 light; v.6 the expanse ("heaven"); v.9 waters gathered, dry land appears ("earth" / "seas"); v.14 lights to separate day and night; v.20 waters swarm with creatures; v.24 land animals; v.26 "let us make man in our image."</li>
+        <li>Hebrew is very specific with word choice — the word used for "day" (<em>yom</em>) is the same word used elsewhere in the Old Testament to mean a literal 24-hour period.</li>
+        <li>"According to their kind" (v.21, 25) suggests God made a kind of template, then variation within it — for animals.</li>
+        <li>Verses 26–27: man is made in God's image. Verse 28: the first thing God says to Adam and Eve is "be fruitful and multiply" — they were made, from the start, to create.</li>
+        <li>2:2 — God's rest didn't mean he was tired. It meant he stopped creating; no other living creature "gets one" (is created) after this point.</li>
+      </ul>
+      <div class="diagram-note">Two triangle sketches appear in the margin here: one showing <strong>Father / Son / Holy Spirit</strong>, the other showing water in its three forms — <strong>liquid / vapor / solid</strong> — as a simple illustration of three-in-one.</div>
+    </div>
+
+    <div class="passage">
+      <h3>The Fall of Man <span class="ref">2–4</span></h3>
+      <ul>
+        <li>There was no rain yet — springs and mist watered the plants.</li>
+        <li>"Adam" means <em>earth-man</em>. He wasn't alive until God breathed life into him.</li>
+        <li>The story of the Bible — from this point until Jesus — begins and ends with a garden (see also Revelation 2:7 and 22).</li>
+        <li>God presenting Eve to Adam is the first gift recorded in the Bible.</li>
+        <li>Adam could have stopped Eve — he was right there beside her — but he didn't.</li>
+        <li>When confronted, Adam blamed Eve (and God); Eve blamed the serpent.</li>
+        <li>The pattern of sin: desire → take.</li>
+      </ul>
+      <div class="callout insight">
+        <span class="tag">Messianic prophecy</span>
+        Genesis 3:15 is the first messianic prophecy in Scripture — God's word to the serpent that Eve's offspring would crush its head.
+      </div>
+      <ul>
+        <li>Michael and Lucifer were both archangels. Lucifer was the most beautiful angel, wanted to overthrow God, and became Satan.</li>
+        <li>Before Adam and Eve were sent out of the garden, God killed an animal and used its skin to clothe them — the first time an animal had been killed.</li>
+        <li>Cain brought God whatever he had lying around; Abel ("the keeper") brought the firstborn of his flock — his best.</li>
+        <li>Hebrew "blood" in this passage carries the sense of "bloodline."</li>
+        <li>Music comes from Cain's family line.</li>
+      </ul>
+      <div class="callout insight">
+        In one generation, sin went from eating a forbidden fruit to family lies and murder.
+      </div>
+    </div>
+
+    <div class="passage">
+      <h3>The Flood <span class="ref">6–8</span></h3>
+      <ul>
+        <li>Methuselah is the oldest recorded person in the Bible — 969 years.</li>
+        <li>Noah is most likely the first person in the Bible ever described as righteous, and the first mention of grace.</li>
+        <li>Noah had almost certainly never seen a boat before God told him to build one.</li>
+        <li>The ark was about 450 ft long, 75 ft wide, and 45 ft high.</li>
+        <li>The flood was the first time it ever rained — the same springs that had watered Eden burst up from the ground.</li>
+        <li>Water covered the earth for 150 days. The ark came to rest on the mountains of Ararat — modern-day Turkey.</li>
+      </ul>
+    </div>
+
+    <div class="passage">
+      <h3>The Call of Abram <span class="ref">12, 15, 16</span></h3>
+      <ul>
+        <li>God called Abram, and Abram went without knowing where he was going.</li>
+        <li>God later changed his name to Abraham — "father of many nations."</li>
+        <li>Abram told Pharaoh that Sarai (his wife) was his sister so he wouldn't be killed.</li>
+        <li>The three men who visited Abraham were understood to be Jesus and two other angels.</li>
+        <li>Sarai gave Abram her servant Hagar to have a child with; Ishmael was born when Abram was 86.</li>
+      </ul>
+      <div class="callout quote">
+        <span class="tag">Genesis 12:3</span>
+        Widely read as a messianic prophecy — a promise that through Abram's line, all the families of the earth would be blessed.
+      </div>
+      <div class="callout insight">
+        <span class="tag">Genesis 15:13–14</span>
+        A direct prophecy of the enslavement of the Jews in Egypt.
+      </div>
+      <ul>
+        <li>Wherever the Old Testament mentions "the angel of the Lord," many scholars take it as the pre-incarnate appearance of Jesus.</li>
+      </ul>
+    </div>
+
+    <div class="passage">
+      <h3>Abraham and Isaac <span class="ref">17–22</span></h3>
+      <ul>
+        <li>God told Abraham to sacrifice Isaac. Abraham traveled three days to get to Mount Moriah — meaning Isaac was, in Abraham's mind, "as good as dead" for three days already.</li>
+        <li>Abraham gave Isaac the wood to carry up the mountain himself.</li>
+        <li>The angel of the Lord stopped Abraham before he killed Isaac.</li>
+        <li>Abraham felt as if Isaac had been resurrected, and named the place "The Lord Will Provide" (KJV: "God will provide himself a lamb," Genesis 22:8).</li>
+      </ul>
+    </div>
+
+    <div class="passage">
+      <h3>Jacob and Esau <span class="ref">25, 27–28</span></h3>
+      <ul>
+        <li><strong>Primogeniture</strong> = the firstborn's right. Normally the firstborn received at least 51% of the inheritance, with the rest split among the other children — this is a birthright.</li>
+        <li>Jacob was the second-born, grasping Esau's heel as he came out — hence the name Jacob. Esau ("hairy") was born first, covered in red hair.</li>
+        <li>Isaac favored Esau, who hunted with him. Rebekah favored Jacob.</li>
+        <li>One day Esau came back from hunting starving, having caught nothing. Jacob offered him stew in exchange for his birthright — and Esau agreed.</li>
+        <li>Isaac, old and blind, intended to bless Esau. Rebekah overheard and planned for Jacob to get the blessing instead — dressing him in Esau's clothes so Isaac would recognize the smell. Jacob received the blessing; Esau returned with the venison moments too late.</li>
+        <li>Esau then sent Jacob away to Paddan-Aram to find a wife. On the way, God visited Jacob in a dream of a stairway to heaven; Jacob named the place Bethel and vowed to give God a tenth of everything he had.</li>
+      </ul>
+      <div class="callout insight">This is where the standard practice of tithing 10% traces back to.</div>
+    </div>
+
+    <div class="passage">
+      <h3>Jacob, Rachel, and Leah <span class="ref">29, 30, 35</span></h3>
+      <ul>
+        <li>Jacob met Rachel at a well and kissed her — and wept.</li>
+        <li>Custom required the older sister to marry first, so Laban tricked Jacob into marrying Leah before Rachel — Jacob worked seven years for Rachel and didn't realize the switch until the morning after the wedding. He then worked another seven years for Rachel.</li>
+        <li>Jacob didn't love Leah as much, but God gave her sons anyway.</li>
+      </ul>
+      <div class="diagram-note">
+        <strong>Jacob's children:</strong><br>
+        Leah — Reuben ("see, a son"), Simeon ("heard"), Levi ("attached / joined together"), Judah ("praise"), Issachar, Zebulun, Dinah<br>
+        Bilhah (Rachel's servant) — Dan ("judge"), Naphtali ("prevail")<br>
+        Zilpah (Leah's servant) — Gad ("good fortune"), Asher ("happy")<br>
+        Rachel — Joseph ("add another son"), Benjamin/Ben-Oni ("son of my sorrow" / "son of my right hand" — Rachel named him as she was dying in labor; Jacob changed the name to Benjamin)
+      </div>
+      <div class="callout quote">Judah and Joseph were both born of Judah's mother line of "praise" — a note tying the two tribes together. Rachel was buried in Bethlehem.</div>
+    </div>
+  </section>
+
+  <section class="book" id="exodus">
+    <h2 class="title">Exodus</h2>
+    <div class="book-sub">Author: Moses (24:4)</div>
+    <div class="bg">
+      <p>Exodus tells the story of God's people escaping slavery in Egypt and relates the beginning of their national identity. It shows how God honored his promise to Abraham by creating a nation out of his descendants, and how deliverance from bondage became the crucial, defining event in Israelite history — later writers and prophets (Psalms and the Prophets) cite it as the most significant miracle in their history.</p>
+      <p>Many scholars view the Exodus story as a theological battle between good (God) and evil (Pharaoh), who views his people as a resource for the goal of building an empire.</p>
+    </div>
+    <div class="diagram-note">
+      <strong>A simple parallel some scholars draw between Genesis and Exodus:</strong><br>
+      Genesis 1–4 — Good creation → Stewardship / meaningful work → "Fill the earth" → Promise<br>
+      Exodus — Anti-creation (a destroyer, not a creator) → Slavery → Extermination → Hopelessness<br>
+      Pharaoh offers slavery; God offers rescue and freedom.
+    </div>
+
+    <div class="passage">
+      <h3>The Birth of Moses <span class="ref">1–2</span></h3>
+      <ul>
+        <li>Exodus 1 is the bridge from Genesis to Exodus. Pharaoh made the Hebrews slaves because he feared they would grow too numerous, and ordered the midwives to kill Hebrew baby boys. When the midwives refused, he ordered all Egyptians to throw the boys into the Nile.</li>
+        <li>Moses's mother made him a basket ("ark") to float on the river to keep him safe. Moses's sister watched from a distance as Pharaoh's daughter found him in the river.</li>
+        <li>Miriam, Moses's sister, offered to find a Hebrew nurse for the baby — and brought Pharaoh's daughter to Moses's own mother.</li>
+        <li>Later in life, Moses killed an Egyptian who was beating a Hebrew, and fled to Midian, where he was given a wife.</li>
+      </ul>
+      <div class="callout insight">The enslavement of the Jews in Egypt is very similar to how the Holocaust began.</div>
+    </div>
+
+    <div class="passage">
+      <h3>The Call of Moses <span class="ref">3–5</span></h3>
+      <ul>
+        <li>God calls Moses through the burning bush while he's shepherding — not a job he ever wanted.</li>
+        <li>Moses didn't want to be the one sent to Egypt, and asked for someone else to be given the job.</li>
+        <li>When Moses asks who he should say sent him, God answers <strong>"I AM WHO I AM."</strong> In Hebrew, this covers past, present, and future all at once — roughly, "I was. I am. I will be."</li>
+        <li>God told Moses to pick up the snake by the tail to prove his staff was actually a cobra, and told him he'd have a speech impediment addressed by Aaron.</li>
+      </ul>
+    </div>
+
+    <div class="passage">
+      <h3>The Passover <span class="ref">7–12</span></h3>
+      <ul>
+        <li>The Israelites lived in a separate part of Egypt called Goshen, which was untouched by at least one of the plagues.</li>
+        <li>Each plague affects an Egyptian god directly: the Nile turning to blood struck the river god; the frogs targeted Heqet; and so on.</li>
+        <li>The "head/main" Egyptian god was Ra, the sun god — which is likely why the plague of darkness landed so hard on the Egyptians.</li>
+        <li>The golden calf Aaron later makes is likely the same god as the Egyptian god Apis, showing how much Egyptian influence stuck with the Israelites in the wilderness.</li>
+      </ul>
+      <div class="diagram-note">
+        <strong>The Ten Plagues:</strong> 1) Water to blood · 2) Frogs · 3) Gnats/lice · 4) Flies · 5) Livestock die · 6) Boils · 7) Hail · 8) Locusts · 9) Darkness · 10) The Passover (death of the firstborn)
+      </div>
+      <ul>
+        <li>The blood on the doorways had to come from a year-old male lamb without blemish, marked in the shape of a cross over the doorway.</li>
+        <li>Passover happened at the same time of year as the modern-day Gasher story (foreshadowing it).</li>
+        <li>The Israelites went into Egypt with 70 people and left with roughly 600,000 men — not counting women and children.</li>
+        <li>To travel, Moses divided the people into their tribes (e.g. Benjamites, Levites).</li>
+      </ul>
+    </div>
+
+    <div class="passage">
+      <h3>The Parting of the Red Sea <span class="ref">13–14</span></h3>
+      <ul>
+        <li>The pillar of cloud (day) and pillar of fire (night) were both vertical.</li>
+      </ul>
+      <div class="callout quote">The ground of the Red Sea was dry when God parted it — the Egyptian chariot wheels fell off once they entered the sea bed.</div>
+      <ul>
+        <li>An archaeologist has claimed to have found chariot wheels on the floor of the Red Sea.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="book" id="deuteronomy">
+    <h2 class="title">Deuteronomy</h2>
+    <div class="book-sub">Author: Moses</div>
+    <div class="passage">
+      <ul>
+        <li>6:4–9 is known as the "Shema," meaning "hear." The Israelites wore phylacteries — leather bands with a small box containing these verses — worn on the forehead and wrist.</li>
+        <li>Moses died at the end of Deuteronomy, at 120 years old. God allowed him to see the Promised Land but not enter it, because of his temper and because his generation had made the golden calf.</li>
+        <li>Modern-day Israel is lush; God didn't allow Moses and his generation to enter the Promised Land because it cost them the last miracle recorded in the book.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ HISTORICAL BOOKS ============ -->
+  <div class="section-group"><div class="group-title">II &nbsp;·&nbsp; HISTORICAL BOOKS</div></div>
+
+  <section class="book" id="joshua">
+    <h2 class="title">Joshua</h2>
+    <div class="book-sub">Author: unknown</div>
+    <div class="passage">
+      <ul>
+        <li>Rahab, a prostitute, helped spy on the Israelites' behalf and protected her people.</li>
+        <li>When the Israelites crossed the Jordan, God parted the river and they set up 12 stones — one for each tribe — as a memorial.</li>
+        <li>God stopped the sun until they completed a battle — the last miracle recorded in Joshua.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="book" id="judges">
+    <h2 class="title">Judges</h2>
+    <div class="book-sub">Author: unknown</div>
+    <div class="bg">
+      <p>Judges is the first book in the Old Testament for which we don't know the author — the common belief is that it was either Samuel or one of his disciples. It covers roughly 300 years of Israel's history, from the death of Joshua to the time of Samuel.</p>
+      <p>It's an action-packed account of Israel's failure to maintain the high spiritual standards laid down by Moses and Joshua. Better-known characters include Deborah, Barak, Gideon, and the legendary strongman Samson.</p>
+    </div>
+  </section>
+
+  <section class="book" id="ruth">
+    <h2 class="title">Ruth</h2>
+    <div class="book-sub">Author: unknown, often attributed to Samuel by tradition</div>
+    <div class="bg">
+      <p>The title comes from its chief character. Ruth was a Moabite who married a Jew, and the book is essentially her biography. It reveals God's faith for all — both Jew and Gentile alike — and provides several valuable analogies to the ancient Messiah as well, theologically previewing the work of the kinsman-redeemer of Ancient Israel.</p>
+      <p>Naomi is Ruth's mother-in-law. Ruth's loyalty to her (1:1–17) is worthy of note, as is her marriage to Boaz and the subsequent birth of their child (4:13–17).</p>
+    </div>
+  </section>
+
+  <section class="book" id="samuel">
+    <h2 class="title">1 &amp; 2 Samuel</h2>
+    <div class="bg">
+      <p>The books of Samuel were originally one book in the Hebrew canon — divided later by the Greek translators. Tradition says Samuel wrote the early portions with help from the prophets Nathan and Gad, and that someone else finished the final edit. The primary theme is Israel's cry for a king, which leads to the founding of the monarchy under Saul and then the emergence of David.</p>
+    </div>
+
+    <div class="passage">
+      <h3>1 Samuel <span class="ref">9–17</span></h3>
+      <ul>
+        <li>Kish was a man of Benjamin; his son Saul was handsome and a head taller than everyone else.</li>
+        <li>Saul went looking for his father's lost donkeys through the hill country and, unable to find them, went to consult Samuel in the land of Zuph.</li>
+        <li>God had already told Samuel that Saul would come, and that he would save Israel from the Philistines. Samuel anointed Saul king by pouring oil on his head.</li>
+        <li>Saul later took 200,000 men (plus 10,000 from Judah) and defeated the Amalekites — but spared King Agag and the best livestock, against God's instruction.</li>
+        <li>God then sent Samuel to Jesse of Bethlehem to find the next king, telling him not to judge by appearance or height. David, the youngest, was out tending sheep.</li>
+      </ul>
+      <div class="callout insight">God gave Israel the king they wanted, not the king they needed.</div>
+      <ul>
+        <li>Saul started out well but grew power-hungry — he pushed Samuel, the chief priest, out of his role, and later began consulting a medium. The only thing that calmed him was music, and David came and played the lyre for him.</li>
+        <li>Samuel personally killed Agag, the Amalekite king Saul had spared.</li>
+      </ul>
+    </div>
+
+    <div class="passage">
+      <h3>2 Samuel <span class="ref">5–11</span></h3>
+      <ul>
+        <li>All the tribes of Israel came to anoint David king at Hebron. David was 30 when he became king, and reigned 40 years total (7 years over Judah in Hebron, 33 over all Israel and Judah in Jerusalem).</li>
+        <li>David brought the ark of God to Jerusalem, the "city of David," from the house of Obed-Edom, and danced before it through the streets.</li>
+        <li>Michal, Saul's daughter, despised David for dancing and saw him as having disgraced himself.</li>
+        <li>David wanted to build a temple for the ark; God sent an analogy through Nathan about a rich man taking a poor man's only lamb — David's own sin (with Bathsheba) was about to be confronted the same way.</li>
+        <li>David sent Uriah, Bathsheba's husband, to the front lines to be killed, then married Bathsheba.</li>
+      </ul>
+    </div>
+
+    <div class="passage">
+      <h3>2 Samuel <span class="ref">12</span></h3>
+      <ul>
+        <li>As punishment, God made David's child with Bathsheba sick, and the child died.</li>
+        <li>David fasted, then afterward washed and worshiped — surprising those around him who expected continued mourning.</li>
+        <li>David and Bathsheba had another child, whom the Lord loved: Solomon (also called Jedidiah).</li>
+        <li>David defeated Rabbah of the Ammonites and took the crown from the king's head, placing it on his own.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="book" id="kings">
+    <h2 class="title">1 &amp; 2 Kings</h2>
+    <div class="book-sub">Author: unknown</div>
+    <div class="passage">
+      <ul>
+        <li>King Solomon loved many foreign women — he had 700 wives and 300 concubines.</li>
+        <li>Babylon and the Chaldeans eventually came against Jerusalem: they killed Zedekiah's sons in front of him, then blinded him, took the best of the people to Babylon, and burned the temple of Jerusalem.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ POETICAL BOOKS ============ -->
+  <div class="section-group"><div class="group-title">III &nbsp;·&nbsp; POETICAL BOOKS</div></div>
+
+  <section class="book" id="job">
+    <h2 class="title">Job</h2>
+    <div class="book-sub">Author: unknown (some think Moses)</div>
+    <div class="bg">
+      <p>Job is a very unique book that defies easy classification. Most of it is written in poetry, but its didactic poetry is meant to educate rather than simply entertain. Many Middle Eastern scholars believe Job was actually written to be performed as a play. Its purpose seems to be to demonstrate that human reason is inadequate to fully understand God's sovereignty (see Isaiah 55:8–9).</p>
+      <p>As with all books that aren't in chronological order, there is only anecdotal evidence for authorship — no author is mentioned in the earliest manuscripts.</p>
+    </div>
+
+    <div class="passage">
+      <h3>Job 1–3</h3>
+      <ul>
+        <li>God allowed Satan to afflict Job and his possessions — the whole time, Job did not sin or charge God with wrong.</li>
+        <li>Job lived in the land of Uz. Job 1 introduces him: a man of great wealth (7 sons, 3 daughters, huge herds and flocks).</li>
+        <li>Job tried to scrape the boils off his skin while sitting in ashes.</li>
+        <li>Satan questions God about Job's motives in chapter 1 — asking if Job would still be faithful without a "hedge" of protection.</li>
+        <li>A great wind made a house collapse on Job's children, killing them.</li>
+      </ul>
+      <div class="callout insight"><span class="tag">Job 1:22</span> Job did not sin or charge God with wrong.</div>
+      <ul>
+        <li>Job worshiped God anyway, and said: "Naked I came from my mother's womb, and naked shall I return... the Lord gave, and the Lord has taken away; blessed be the name of the Lord."</li>
+        <li>When God allows Satan to directly afflict Job, he gets boils all over his body.</li>
+        <li>Job's wife suggests he should "curse God and die."</li>
+        <li>Three of Job's friends came to comfort him and sat with him for seven days and seven nights, saying nothing — because they saw his suffering was so great.</li>
+      </ul>
+    </div>
+
+    <div class="passage">
+      <h3>Job 4–11</h3>
+      <ul>
+        <li>Eliphaz was the oldest, so he spoke to Job first — suggesting maybe Job's children had sinned and not him, and that no one could be truly innocent before God.</li>
+        <li>Bildad spoke next, essentially telling Job that God wouldn't reject a blameless man, so Job must have done something wrong.</li>
+        <li>Zophar spoke next, calling Job a hypocrite, and said that what Job was experiencing was actually less than he deserved.</li>
+        <li>Job compared his friends to a dry streambed that travelers count on for water, but find empty when they need it most.</li>
+      </ul>
+    </div>
+
+    <div class="passage">
+      <h3>Job 13–27</h3>
+      <ul>
+        <li>Job defends himself and holds fast to his own righteousness.</li>
+        <li>He says he will hold on to his integrity no matter what happens to him.</li>
+      </ul>
+    </div>
+
+    <div class="passage">
+      <h3>Job 32–37</h3>
+      <ul>
+        <li>Elihu, a younger onlooker, speaks up because he says God inspired him to — he hadn't spoken earlier out of respect for his elders.</li>
+        <li>He tells Job that his friends don't actually know what they're talking about.</li>
+        <li>He tells Job that God is greater than any of them, and controls the weather — which shows his power.</li>
+        <li>He asks Job whether he really understands how weather works, if he thinks he can understand God.</li>
+      </ul>
+    </div>
+
+    <div class="passage">
+      <h3>Job 38–42</h3>
+      <ul>
+        <li>God finally answers Job — through a whirlwind — because he had questions of his own to ask Job, essentially a barrage of rhetorical questions Job has no way to answer.</li>
+      </ul>
+      <div class="callout quote"><span class="tag">Job 38</span> God asks Job if he realizes he doesn't actually understand what's going on because he isn't God.</div>
+      <ul>
+        <li>God answers Job's own questions with questions of his own.</li>
+        <li>Job's possessions were doubled after he suffered.</li>
+        <li>He lived to be 140 years old and had seven more sons and three more daughters — as many as he had before.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="book" id="psalms">
+    <h2 class="title">Psalms</h2>
+    <div class="bg">
+      <p>The superscriptions in the Hebrew name six authors, assigned to a total of 73 psalms, and 61 more (often called "the orphan psalms") don't name an author at all. David is credited most — 73, plus 73–83.</p>
+      <div class="diagram-note">
+        <strong>Authors:</strong> David (Psalm 40, etc.) · Asaph, Levite worship leader (Psalms 50, 73–83) · Sons of Korah, Levite music ministers (Psalm 88) · Solomon, David's son (Psalm 72, 127) · Moses (Psalm 90) · Heman, Levite music minister (Psalm 88) · Ethan, Levite music minister (appointed by David)
+      </div>
+      <p>The Psalms are poetic songs sung in Hebrew worship service, often accompanied by instruments. The word "Psalter" is in essence an ancient hymnal. The word "Psalm" literally means "praise" or "song of praise."</p>
+      <p><strong>Classification:</strong> some attempts have been made to classify the Psalms by form and/or content. The following are just some of those classifications: (1) Acrostic Psalms — each verse begins with a consecutive letter of the Hebrew alphabet; (2) Messianic Psalms — prophetic in nature; (3) Pilgrim Psalms — sung by pilgrims headed to Jerusalem for feast/holy days; (4) Psalms of Praise — have a call and a cause for praise; (5) Psalms for Thanksgiving — express thanksgiving; (6) Songs of Zion — focus on Zion (Jerusalem) as the city of Heaven, or both, depending on context.</p>
+    </div>
+
+    <div class="passage">
+      <h3>Psalms 1–13</h3>
+      <div class="callout insight"><span class="tag">Psalm 2 — Messianic prophecy</span> Its chorus begins and ends with the same thing. This is a messianic prophecy: Jesus was crucified for the same claim this psalm makes about creation and God's word. Psalm 8 references Jesus quoting it on the cross — "My God, my God, why have you forsaken me?" (22:1). Psalm 13 is about David questioning when he will be king and not Saul.</div>
+    </div>
+
+    <div class="passage">
+      <h3>Psalms 14–23</h3>
+      <ul><li>Psalm 14 says God reveals himself to us through his word.</li></ul>
+      <div class="callout insight">
+        <span class="tag">Psalm 22:19–18</span> Perfectly describes what happens during Jesus's crucifixion — the crucifixion wasn't invented yet when David wrote this.<br>
+        <span class="tag">"I have installed my King on Zion, my holy mountain"</span>
+      </div>
+      <ul><li>The valley of the shadow of death is what's called the Jericho Road now. It was a main trade route; people would kill you and take your goods if you stayed too long.</li></ul>
+    </div>
+
+    <div class="passage">
+      <h3>Psalms 24–46</h3>
+      <ul>
+        <li>Psalm 24 is antiphonal, meaning a call-and-response format — this psalm is the one David was dancing to as he brought back the ark of the covenant in 2 Samuel.</li>
+        <li>David wrote Psalm 32 as a result of the Bathsheba story in Judah.</li>
+        <li>Psalm 42 is also antiphonal, but just with one person.</li>
+      </ul>
+    </div>
+
+    <div class="passage">
+      <h3>Psalms 51–95</h3>
+      <ul>
+        <li>David wrote Psalm 51 right after Nathan came to him about Bathsheba.</li>
+        <li>David wrote Psalm 63 when he was in the wilderness.</li>
+        <li>Psalm 65 was written before the harvest in Israel.</li>
+        <li>Psalm 90 was written by Moses at the end of his life — this is his final word.</li>
+      </ul>
+    </div>
+
+    <div class="passage">
+      <h3>Psalms 95–150</h3>
+      <ul>
+        <li>Psalm 95 is a call to worship.</li>
+        <li>Psalm 100:4 is the verse that Enter His Courts was based on ("north to south" not "east to west").</li>
+        <li>In Psalm 107, verses 8, 15, and 21 are the chorus of the song.</li>
+        <li>Psalm 118:8–9: "It is better to take refuge in the Lord than to trust in man. It is better to take refuge in the Lord than to trust in princes" — is the middle verse count. God is quite literally in the middle of everything, if it is best to trust God.</li>
+      </ul>
+      <div class="callout quote">
+        <span class="tag">Psalm 118:22–23 — "The stone that the builders rejected has become the cornerstone"</span>
+        Widely read as a messianic prophecy.
+      </div>
+      <ul>
+        <li>Psalm 119:1 is a super acrostic — each of its 176 verses (22 stanzas of 8) is included in the pledge to the Bible.</li>
+        <li>Psalm 119:105 is a pilgrimage song.</li>
+        <li>Psalm 121 is a pilgrimage song.</li>
+        <li>Psalm 127 is the only psalm written by Solomon.</li>
+        <li>Psalm 150, the last chapter in Psalms, repeatedly says "praise the Lord."</li>
+        <li>Psalm 119 is the longest chapter in the Bible.</li>
+      </ul>
+
+      <div class="story">
+        <span class="story-label">"East to West" — the significance of Psalm 103:12, told from a message by Mr. Titus</span>
+        <p>"Say you're the greatest athlete of all time, and you want to prove it by traveling all the way around the world in a straight line by foot. You start first by heading east from the United States. You run across Europe, across Asia, and eventually get to the Pacific Ocean. It's a little longer than a swim, so you decide to make a stretch of it by swimming across the Pacific. It's a bit rough, but you eventually get to California and run the final stretch back to the East Coast — you've run across the whole United States, swum the Pacific, and run across Europe and Asia. So you run to the west coast. But this time, you go west. So you run to the west coast, then you decide to make the trip again — after a day's rest, you decide to make the trip again, but this time you go west."</p>
+        <p>"There was never a time that you traveled far enough that you started going east while traveling west. Say you want to travel north instead. You run to the Arctic Ocean, and get to the North Pole. So you run and continue north until you reach the Arctic, and continue north until you reach the North Pole. The only thing that separates the north from the south is literally a single step. On the other hand, you can travel east around the world an infinite number of times and never reach the west. That is not by accident."</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="book" id="proverbs">
+    <h2 class="title">Proverbs</h2>
+    <div class="book-sub">Author: Solomon is credited with most of the book, but not all of it</div>
+    <div class="bg">
+      <p>Agur and Lemuel are credited with a small portion, but it has no record of who they might have been. No scholars think those are pseudonyms Solomon may have used to avoid charges of plagiarism.</p>
+      <p>The basic meaning of the Hebrew word "proverb" is "comparison," but it has come to stand for more. Much of the book refers to aphorisms, which are concise statements of principles.</p>
+      <p>The basic purpose of the book is to clearly show the listener/reader how to live wisely. The word "wisdom" literally means "skill in living" — it appears in relation to many topics.</p>
+      <div class="callout insight"><span class="tag">Key thought</span> The practical application of wisdom leads to an abundant and successful life.</div>
+    </div>
+  </section>
+
+  <section class="book" id="ecclesiastes">
+    <h2 class="title">Ecclesiastes</h2>
+    <div class="book-sub">Written by Solomon — AKA "the Preacher," the son of David</div>
+    <div class="passage">
+      <ul>
+        <li>This is a defining theme: everything is meaningless/vain when it doesn't have meaning intended for it.</li>
+        <li>Chapters 1 & 2 say that everything is meaningless/vain.</li>
+        <li>Chapter 3 says that there's a time and a way things happen when God intended it — "a time for everything."</li>
+      </ul>
+      <div class="callout quote">3:1–8 are the lyrics of "Turn, Turn, Turn" by The Byrds. This song is known as the song that reached No. 1 on the charts with the oldest lyrics.</div>
+    </div>
+  </section>
+
+  <section class="book" id="song">
+    <h2 class="title">Song of Solomon</h2>
+    <div class="passage">
+      <ul>
+        <li>This is a duet between Solomon and one of his wives.</li>
+      </ul>
+      <div class="callout insight">It is believed that it will be a Messianic allegory for the love between Christ and the church.</div>
+    </div>
+  </section>
+
+  <!-- ============ MAJOR PROPHETS ============ -->
+  <div class="section-group"><div class="group-title">IV &nbsp;·&nbsp; MAJOR PROPHETS</div></div>
+
+  <section class="book" id="isaiah">
+    <h2 class="title">Isaiah</h2>
+    <div class="bg">
+      <p>Isaiah was the son of Amoz and a prominent citizen of Jerusalem. He served as King Hezekiah's chief advisor and is considered by scholars to be "the literary genius of the prophets." The book has more chapters than any other prophetic book and is therefore often called the longest prophetic book. It's also cited more numerous times than any other Old Testament book in the New Testament (Matthew 3:3; 12:17–21; Luke 3:4–6; John 12:38–41 and Acts 8:28–34, for example).</p>
+      <div class="callout insight"><span class="tag">Isaiah has more messianic prophecies than any other book</span> Isaiah is a mini-format of the Bible: 66 chapters (66 books in the Bible), 39 chapters in one prophetic section (39 books in the OT), 27 chapters in the other section (27 books in the NT).</div>
+      <p>There are 274 messianic prophecies in Isaiah, and Jesus fulfills between 350–400 Old Testament prophecies (depending on the scholar's count). According to research by Dr. Richard Stoner, a Math professor (American Scientific Association), the odds of one person fulfilling all of them by chance are 1 in 10<sup>21</sup>, meaning that no one person could have fulfilled them all by accident.</p>
+    </div>
+
+    <div class="passage">
+      <h3>Isaiah 7–14</h3>
+      <ul>
+        <li>7:14 — "the virgin will conceive and bear a son, and call him Immanuel" — the child shall be called "The Prince of Peace."</li>
+        <li>Chapter 9 informs us that this child shall be a descendant of Jesse.</li>
+        <li>Chapter 11 says the Messiah will be a descendant of Jesse, and that it's clear that although the Messiah will be Jewish, his message will also be for the Gentiles.</li>
+      </ul>
+      <div class="callout quote"><span class="tag">14:24</span> "The Lord of hosts has sworn: 'As I have planned, so shall it be, and as I have purposed, so shall it stand'" — Isaiah is the only prophet that volunteered for the job.</div>
+      <div class="diagram-note">What we read: 7, 9, 11, 12, 14</div>
+    </div>
+
+    <div class="passage">
+      <h3>Isaiah 21–53</h3>
+      <ul>
+        <li>33:22 is what James Madison based his idea of the government/Constitution on — separation of powers.</li>
+        <li>40:3 is talking about "Good things" — is Greek for gospel — is asking questions, he is getting frustrated that the crowd is not understanding his message.</li>
+        <li>52:7 says the feet of Jesus are "beautiful upon the mountains of him who brings good news!"</li>
+        <li>According to chapter 53, the Messiah will bear our griefs, sicknesses, and sorrows.</li>
+        <li>"We like sheep have gone astray" — 53:6.</li>
+        <li>The Messiah is compared to a lamb before its shearers — "he like a sheep before he will remain silent."</li>
+      </ul>
+      <div class="diagram-note">What we read: 21, 26, 28–31, 33:22, 40:1–11, 42, 50, 52–53</div>
+    </div>
+  </section>
+
+  <section class="book" id="jeremiah">
+    <h2 class="title">Jeremiah</h2>
+    <div class="book-sub">Considered a "major" prophet</div>
+    <div class="bg">
+      <p>Jeremiah was the son of Hilkiah the priest. His prophetic ministry stretches until the fall of Jerusalem during the reign of Zedekiah. Because it has more words than Isaiah, it is often called the longest prophetic book.</p>
+    </div>
+
+    <div class="passage">
+      <h3>Jeremiah 1–31</h3>
+      <ul>
+        <li>Jeremiah was just a kid when he was called.</li>
+        <li>Jeremiah's first prophecy was about how his homeland would be destroyed.</li>
+        <li>"Covenant" is a synonym for "testament."</li>
+        <li>Jeremiah prophesies about a new covenant — one that will be written on people's hearts.</li>
+      </ul>
+      <div class="diagram-note">
+        <strong>What we read:</strong><br>
+        1:4–12 &amp; 14–19 — the calling of Jeremiah<br>
+        18:1–6 — the potter and the clay<br>
+        20:9 — Jeremiah's "burning fire" when he decides not to preach<br>
+        29:10–14 — letter to the exiles*<br>
+        31:31–34 — the New Covenant*
+      </div>
+      <div class="callout insight">*These are the only two prophecies Jeremiah made that he didn't personally see fulfilled — every other prophecy he made, he lived to see come to pass.</div>
+    </div>
+  </section>
+
+  <section class="book" id="daniel">
+    <h2 class="title">Daniel</h2>
+    <div class="book-sub">Considered a "major" prophet</div>
+    <div class="bg">
+      <p>Daniel was of royal birth and above-average physically and mentally. He was taken captive as a teenager and lived in Babylon into his eighties. His life clearly represents God as the sovereign of all history, as it includes both historical and prophetic passages (chapters 4–19... — see chart). The book of Revelation is viewed by most scholars as a commentary on things introduced in Daniel 9.</p>
+    </div>
+
+    <div class="passage">
+      <h3>Daniel 1</h3>
+      <ul>
+        <li>In the third year of Jehoiakim, king of Judah, Nebuchadnezzar king of Babylon came to Jerusalem and besieged it.</li>
+        <li>Captives were brought to the land of Shinar. Ashpenaz was told to select youths without blemish, good-looking, and skillful in wisdom, and to teach them the literature and language of the Chaldeans — to be educated for three years.</li>
+        <li>Among those taken were Daniel (Belteshazzar), Hananiah (Shadrach), Mishael (Meshach), and Azariah (Abednego) — Babylonian names given to them.</li>
+        <li>Daniel resolved not to defile himself with the king's food or wine, and asked for vegetables and water instead for ten days.</li>
+        <li>After ten days, the four looked healthier than those who had eaten the king's food, and were found ten times better in wisdom and understanding than all the magicians and enchanters in the kingdom.</li>
+        <li>Daniel remained there until the first year of King Cyrus.</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="divider">
+  <p style="text-align:center;color:var(--text-soft);font-size:13px;">Compiled from two personal notebooks — general Old Testament background, and a closer study of Psalms 95–150 through Daniel.</p>
+
+</main>
+</div>
+</body>
+</html>
